@@ -1,0 +1,43 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{libs.tex}
+\usepackage{macros}
+\usepackage{domainmacros}
+
+\begin{document}
+\begin{tikzpicture}[xscale=2.0,yscale=1.4]%[font=\Large]
+    \node (v00) at (0, 0) [treenode] {\labeledvalue{$\h(\examplea)$}{\examplea}};
+    \node (v10) at (1, 0) [treenode] {\labeledvalue{$\h(\exampleb)$}{\exampleb}};
+    \node (v20) at (2, 0) [treenode] {\labeledvalue{$\h(\examplec)$}{\examplec}};
+    \node (v30) at (3, 0) [treenode] {\labeledvalue{$\h(\exampled)$}{\exampled}};
+    \node (v40) at (4, 0) [treenode] {\labeledvalue{$\h(\examplee)$}{\examplee}};
+    \node (v50) at (5, 0) [treenode] {\labeledvalue{$\h(\examplef)$}{\examplef}};
+    \node (v60) at (6, 0) [treenode] {\labeledvalue{$\h(\exampleg)$}{\exampleg}};
+
+    \node (v01) at (0.5, 1) [treenode] {$\h(\h(\examplea) \concat \h(\exampleb))$};
+    \node (v11) at (2.5, 1) [treenode] {$\h(\h(\examplec) \concat \h(\exampled))$};
+    \node (v21) at (4.5, 1) [treenode] {$\h(\h(\examplee) \concat \h(\examplef))$};
+    \node (v31) at (6.5, 1) [treenode] {$\h(\h(\exampleg))$};
+
+    \node (v02) at (1.5, 2) [treenode] {$\h(\h(\h(\examplea) \concat \h(\exampleb)) \concat \h(\h(\examplec) \concat \h(\exampled)))$};
+    \node (v12) at (5.5, 2) [treenode] {$\h(\h(\h(\examplee) \concat \h(\examplef)) \concat \h(\h(\exampleg)))$};
+
+    \node (v03) at (3.5, 3) [treenode] {$\h(\h(\h(\h(\examplea) \concat \h(\exampleb)) \concat \h(\h(\examplec) \concat \h(\exampled))) \concat \h(\h(\h(\examplee) \concat \h(\examplef)) \concat \h(\h(\exampleg))))$};
+
+    \draw (v00) edge[edge] (v01);
+    \draw (v10) edge[edge] (v01);
+    \draw (v20) edge[edge] (v11);
+    \draw (v30) edge[edge] (v11);
+    \draw (v40) edge[edge] (v21);
+    \draw (v50) edge[edge] (v21);
+    \draw (v60) edge[edge] (v31);
+
+    \draw (v01) edge[edge] (v02);
+    \draw (v11) edge[edge] (v02);
+    \draw (v21) edge[edge] (v12);
+    \draw (v31) edge[edge] (v12);
+    
+    \draw (v02) edge[edge] (v03);
+    \draw (v12) edge[edge] (v03);
+\end{tikzpicture}
+\end{document}

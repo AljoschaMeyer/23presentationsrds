@@ -1,5 +1,8 @@
+\documentclass{beamer}
+
 \input{libs.tex}
 \usepackage{macros}
+\usepackage{domainmacros}
 \input{beamersetup.tex}
 
 \title[RBSR]{Range-Based Set Reconciliation}
@@ -44,32 +47,61 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}{P2P Reconciliation}
+    Peer-to-peer systems:
+    \begin{itemize}
+        \item iterating over local set infeasible
+        \item loading local set into memory infeasible
+        \item some peers are out to get us
+    \end{itemize}
+
+    \pause
+
+    $\implies$ traditional approaches don't work
+\end{frame}
+
+\begin{frame}{Range-Based Set Reconciliation}
+    $X_{\alpha} \defeq \{\exampleb, \examplec, \exampled, \examplee, \examplef, \exampleh \}$
+    \hfill
+    $X_{\beta} \defeq \{\examplea, \examplee, \examplef, \exampleg\}$
+    \includegraphics[keepaspectratio=true,width=11.4cm]{examplerun.pdf}
+
+    % \item hence relax to logarithmic number of rounds
+    % \item divide-and-conquer -> explain rbsr
+    % \item complexity analysis
+\end{frame}
+
+\begin{frame}{Some Nice Properties}
+    \begin{itemize}
+        \item reasonably efficient: $\complexity{\min(n_{\triangle} \cdot \log(n), n)}$ bytes communication, $\complexity{1}$ working memory
+        \item arbitrary recursion anchor protocols
+        \item arbitrary partition techniques \pause
+        \item but: linear computation times
+    \end{itemize}
+\end{frame}
+
+% \begin{frame}{}
+%     \begin{itemize}
+%         \item two issues, start with the subtle one
+%         \item deadlock
+%         \item solution
+%         \item analysis and model
+%     \end{itemize}
+% \end{frame}
+
+\begin{frame}{Reducing Computation Times}
+    \begin{itemize}
+        \item Step 1: Put a Merkle tree on it
+        \item Step 2: ???
+        \item Step 3: Profit
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{}
     
 \end{frame}
 
-\begin{frame}{}
-\begin{itemize}
-    \item my interest: p2p systems -> low resources (cannot load sets into memory, cannot iterate over full set), peers are untrusted
-    \item traditional: obtain estimate of the size of symdif, then reconcile in O(1) communication rounds
-    \item cpi: compute loooong time (O(n)), needing space of O(symdif) (tends to crash)
-    \item iblt: same
-\end{itemize}
 
-\begin{itemize}
-    \item hence relax to logarithmic number of rounds
-    \item divide-and-conquer -> explain rbsr
-    \item complexity analysis
-    \item arbitrary recursion anchor (protocols)
-    \item arbitrary partition techniques in principle
-\end{itemize}
-
-\begin{itemize}
-    \item two issues, start with the subtle one
-    \item deadlock
-    \item solution
-    \item analysis and model
-\end{itemize}
 
 \begin{itemize}
     \item not-so-subtle: linear computation times
@@ -118,6 +150,6 @@
     \item conclusion: first non-trivial reconciliation algorithm to work in resource-constrained settings and adversarial environments
     \item also: comparatively simple -> had multiple open source developers reach out to me
 \end{itemize}
-\end{frame}
+% \end{frame}
 
 \end{document}

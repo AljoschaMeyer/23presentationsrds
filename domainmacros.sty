@@ -1,0 +1,188 @@
+% !TEX root = ./main.tex
+% The above line is a magic comment that tells text editors which file to compile.
+
+\ProvidesPackage{macros}
+
+\newcommand{\lift}[2]{\operatorname{lift_{#1}^{#2}}}
+\newcommand{\liftlabel}[2]{\operatorname{label_{#1}^{#2}}}
+\newcommand{\somewhatmorphism}[0]{tree-friendly function}
+\newcommand{\somewhatmorphisms}[0]{tree-friendly functions}
+
+\newcommand{\tlabel}[1]{\operatorname{lbl_{#1}}}
+\newcommand{\sllabel}[1]{\operatorname{slbl_{#1}}}
+\newcommand{\skipdomain}[0]{\operatorname{domain}}
+
+\newcommand{\range}[3]{[{#1},{#2})_{#3}}
+\newcommand{\rangex}[3]{({#1},{#2})_{#3}}
+\newcommand{\fp}[1]{\operatorname{fp}(#1)}
+\newcommand{\fpname}[0]{\operatorname{fp}}
+\newcommand{\ifpmanual}[3]{\bigl({#1}, {#3}, {#2}\bigr)}
+\newcommand{\ifp}[3]{\ifpmanual{#1}{#2}{\fp{\range{#1}{#2}{#3}}}}
+\newcommand{\iis}[4]{({#1}, {#2}, {#3}, {#4})}
+\newcommand{\iisnatural}[4]{({#1}, {#2}, \range{#1}{#2}{#3}, {#4})}
+\newcommand{\ifpempty}[2]{({#1}, {#2})}
+\newcommand{\ifpsingle}[2]{\ifpmanual{#1}{#2}{\emptyset}}
+\newcommand{\ifpcontain}[3]{\ifpmanual{#1}{#2}{\groupadd{\fp{x}}{#3}}}
+
+\newcommand{\successor}[1]{\operatorname{successor({#1})}}
+
+\newcommand{\cp}[1]{\chi_{#1}(Z)}
+
+%\newcommand{\tl}[1]{{#1}\mathtt{.left}}
+%\newcommand{\tv}[1]{{#1}\mathtt{.value}}
+%\newcommand{\tr}[1]{{#1}\mathtt{.right}}
+\newcommand{\tl}[1]{{#1}\mathtt{.l}}
+\newcommand{\tv}[1]{{#1}\mathtt{.v}}
+\newcommand{\tr}[1]{{#1}\mathtt{.r}}
+\newcommand{\tp}[1]{{#1}\mathtt{.p}}
+\newcommand{\tm}[1]{{#1}\mathtt{.m}}
+
+
+
+
+\newcommand{\peer}[1]{\ensuremath{\mathcal{X}_{#1}}}
+
+\newcommand{\examplefp}[1]{#1}
+\newcommand{\fpa}[0]{\examplefp{144}}
+\newcommand{\fpb}[0]{\examplefp{194}}
+\newcommand{\fpc}[0]{\examplefp{240}}
+\newcommand{\fpd}[0]{\examplefp{245}}
+\newcommand{\fpe}[0]{\examplefp{76}}
+\newcommand{\fpf}[0]{\examplefp{221}}
+\newcommand{\fpg}[0]{\examplefp{224}}
+\newcommand{\fph}[0]{\examplefp{65}}
+\newcommand{\fpcd}[0]{\examplefp{229}}
+\newcommand{\fpacd}[0]{\examplefp{117}}
+\newcommand{\fpefgh}[0]{\examplefp{74}}
+\newcommand{\fpbcdh}[0]{\examplefp{232}}
+\newcommand{\fpzero}[0]{\examplefp{0}}
+
+%\newcommand{\examplea}[0]{a}
+%\newcommand{\exampleb}[0]{b}
+%\newcommand{\examplec}[0]{c}
+%\newcommand{\exampled}[0]{d}
+%\newcommand{\examplee}[0]{e}
+%\newcommand{\examplef}[0]{f}
+%\newcommand{\exampleg}[0]{g}
+%\newcommand{\exampleh}[0]{h}
+\newcommand{\examplea}[0]{\ensuremath{\mathrm{a}}}
+\newcommand{\exampleb}[0]{\ensuremath{\mathrm{b}}}
+\newcommand{\examplec}[0]{\ensuremath{\mathrm{c}}}
+\newcommand{\exampled}[0]{\ensuremath{\mathrm{d}}}
+\newcommand{\examplee}[0]{\ensuremath{\mathrm{e}}}
+\newcommand{\examplef}[0]{\ensuremath{\mathrm{f}}}
+\newcommand{\exampleg}[0]{\ensuremath{\mathrm{g}}}
+\newcommand{\exampleh}[0]{\ensuremath{\mathrm{h}}}
+\newcommand{\examplei}[0]{\ensuremath{\mathrm{i}}}
+\newcommand{\exampley}[0]{\ensuremath{\mathrm{y}}}
+% \newcommand{\examplea}[0]{\ensuremath{\mathrm{ape}}}
+% \newcommand{\exampleb}[0]{\ensuremath{\mathrm{bee}}}
+% \newcommand{\examplec}[0]{\ensuremath{\mathrm{cat}}}
+% \newcommand{\exampled}[0]{\ensuremath{\mathrm{doe}}}
+% \newcommand{\examplee}[0]{\ensuremath{\mathrm{eel}}}
+% \newcommand{\examplef}[0]{\ensuremath{\mathrm{fox}}}
+% \newcommand{\exampleg}[0]{\ensuremath{\mathrm{gnu}}}
+% \newcommand{\exampleh}[0]{\ensuremath{\mathrm{hog}}}
+% \newcommand{\examplei}[0]{\ensuremath{\examplea}}
+% \newcommand{\exampley}[0]{\ensuremath{\mathrm{yak}}}
+
+\newcommand{\hexamplea}[0]{\ensuremath{\h(\mathrm{ape}})}
+\newcommand{\hexampleb}[0]{\ensuremath{\h(\mathrm{bee}})}
+\newcommand{\hexamplec}[0]{\ensuremath{\h(\mathrm{cat}})}
+\newcommand{\hexampled}[0]{\ensuremath{\h(\mathrm{doe}})}
+\newcommand{\hexamplee}[0]{\ensuremath{\h(\mathrm{eel}})}
+\newcommand{\hexamplef}[0]{\ensuremath{\h(\mathrm{fox}})}
+\newcommand{\hexampleg}[0]{\ensuremath{\h(\mathrm{gnu}})}
+\newcommand{\hexampleh}[0]{\ensuremath{\h(\mathrm{hog}})}
+
+\definecolor{leftSearch}{HTML}{428BFF}
+\definecolor{rightSearch}{HTML}{FC4842}
+\definecolor{leftInner}{HTML}{AA42FF}
+\definecolor{rightInner}{HTML}{F79C40}
+\definecolor{top}{HTML}{F5FF3D}
+
+\newcommand{\aux}[2]{
+\begin{tabular}{ c }
+{#1} \\ 
+\hline
+${#2}$
+\end{tabular}
+}
+
+\tikzset{
+aux/.style={
+  align=left,
+  draw=black,
+  fill=white
+  }
+}
+
+\newcommand{\examplefpi}[3]{
+  $\ifpmanual{#1}{#2}{\fp{#3}}$
+}
+\newcommand{\exampleiis}[4]{
+\begin{tabular}{ c | c  | c }
+{#1} & {#3} & {#2} \\ 
+\end{tabular} $_{(#4)}$
+}
+
+\tikzset{
+fpi/.style={
+  align=left,
+  draw=black,
+  fill=orange!15!white
+  }
+}
+
+\tikzset{
+iis/.style={
+  align=left,
+  draw=black,
+  fill=blue!15!white,rounded corners=.25cm
+  }
+}
+
+\tikzset{
+local/.style={
+  }
+}
+
+\tikzstyle{edge} = [draw,thick,opacity=0.25]
+\tikzstyle{dep} = [draw,thick]
+
+\tikzset{
+skiplistnode/.style={
+  align=center,
+  draw=black,
+  fill=white,
+minimum width={width("\exampleg") + width("x")},
+minimum height={height("\exampleh") + height("h"}
+  }
+}
+
+\tikzset{
+fingerprintnode/.style={
+  align=center,
+  draw=black,
+  thick,
+  fill=lightgray,
+minimum width={width("\exampleg") + width("x")},
+minimum height={height("\exampleh") + height("h"}
+  }
+}
+
+\tikzset{
+  treenode/.style={
+  align=left,
+  draw=black,
+  fill=white
+  }
+}
+
+\newcommand{\labeledvalue}[2]{
+\begin{tabular}{ c }
+{#1} \\
+\hline
+{#2} \\
+\end{tabular}
+}
