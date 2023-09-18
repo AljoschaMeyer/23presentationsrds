@@ -279,26 +279,100 @@
         \item neutral element: $0$\pause
         \item lifting into the monoid: $\lambda x.1$
     \end{itemize}
+
+    \begin{itemize}
+        \item<3-> set of labels: $\set{n \st 0 <= n < 2^{256} - 1}$
+        \item<4-> binary associative function: xor
+        \item<4-> neutral element: $0$
+        \item<3-> lifting into the monoid: sha256
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Advantages}
+    \begin{itemize}
+        \item solid worst-case communication complexity
+        \item implementation independence
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Alternative Datastructures}
+    \begin{tikzpicture}[xscale=1.5,yscale=1.6][font=\footnotesize]
+        \pgfdeclarelayer{background}
+        \pgfdeclarelayer{foreground}
+        \pgfsetlayers{background,main,foreground}
+
+        \begin{pgfonlayer}{main}
+            \node (v00) at (0, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplea}};
+            \node (v10) at (1, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplec}};
+            \node (v20) at (2, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplee}};
+            \node (v30) at (3, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleg}};
+            \node (v40) at (4, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplei}};
+            \node (v50) at (5, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplek}};
+            \node (v60) at (6, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplem}};
+        
+            \node (v01) at (0.5, 1) [treenodeSmall] {\labeledvalue{$3$}{\exampleb}};
+            \node (v11) at (2.5, 1) [treenodeSmall] {\labeledvalue{$3$}{\examplef}};
+            \node (v21) at (4.5, 1) [treenodeSmall] {\labeledvalue{$3$}{\examplej}};
+            \node (v31) at (6.5, 1) [treenodeSmall] {\labeledvalue{$2$}{\examplen}};
+        
+            \node (v02) at (1.5, 2) [treenodeSmall] {\labeledvalue{$7$}{\exampled}};
+            \node (v12) at (5.5, 2) [treenodeSmall] {\labeledvalue{$6$}{\examplel}};
+        
+            \node (v03) at (3.5, 3) [treenode] {\labeledvalue{$14$}{\exampleh}};
+        
+            \draw (v00) edge[edge] (v01);
+            \draw (v10) edge[edge] (v01);
+            \draw (v20) edge[edge] (v11);
+            \draw (v30) edge[edge] (v11);
+            \draw (v40) edge[edge] (v21);
+            \draw (v50) edge[edge] (v21);
+            \draw (v60) edge[edge] (v31);
+        
+            \draw (v01) edge[edge] (v02);
+            \draw (v11) edge[edge] (v02);
+            \draw (v21) edge[edge] (v12);
+            \draw (v31) edge[edge] (v12);
+            
+            \draw (v02) edge[edge] (v03);
+            \draw (v12) edge[edge] (v03);
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{foreground}
+            \only<2->{
+                \draw[draw=black, fill=black, opacity=0.6] (-0.5,-0.5) rectangle (0.8,4.5);
+                \draw[draw=black, fill=black, opacity=0.6] (4.8,-0.5) rectangle (8.5,4.5);
+            }
+        % \end{pgfonlayer}
+
+        % \begin{pgfonlayer}{background}
+            \begin{scope}[transparency group, opacity=0.3]
+                \only<5->{
+                    \draw[orange,line width=11pt,rounded corners=0.1em,line cap=round] (v03.center) -- (v02.center) -- (v01.center) -- (v10.center);
+                    \draw[orange,line width=11pt,rounded corners=1em,line cap=round] (v03.center) -- (v02.center) -- (v01.center) -- (v10.center);
+                    \draw[orange,line width=11pt,rounded corners=0.1em,line cap=round] (v03.center) -- (v12.center) -- (v21.center);
+                    \draw[orange,line width=11pt,rounded corners=1em,line cap=round] (v03.center) -- (v12.center) -- (v21.center);
+                }                
+
+                \only<3->{
+                    \draw[draw=violet, fill=violet] (0.7,-0.05) rectangle ++(0.6,0.5);
+                    \draw[draw=violet, fill=violet] (2.2,0.95) rectangle ++(0.6,0.5);
+                    \draw[draw=violet, fill=violet] (3.7,-0.05) rectangle ++(0.6,0.5);
+                }
+
+                \only<4->{
+                    \draw[draw=blue, fill=blue] (1.2,1.6) rectangle ++(0.6,0.42);
+                    \draw[draw=blue, fill=blue] (3.1,2.63) rectangle ++(0.8,0.42);
+                    \draw[draw=blue, fill=blue] (4.2,0.6) rectangle ++(0.6,0.42);
+                }
+            \end{scope}
+        \end{pgfonlayer}
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Successive Ranges}
     
 \end{frame}
 
-\begin{itemize}
-    \item let's backtrack and solve the first problem -> associativity
-    \item example tree (using counts, then hashes)
-    \item definition
-    \item arbitrary ranges: collections of maximal subtrees, complexity analysis
-    \item successive ranges yay
-\end{itemize}
-
-\begin{itemize}
-    \item this gives us worst-case bounds on roundtrips
-    \item implementation independence
-    \item more datastructure-neutral formulation: monoids
-    \item paper actually uses different data structure, also B-trees, skip lists, radix trees, no data structure, ... and all interoperable
-\end{itemize}
 
 \begin{itemize}
     \item malicious adversaries: active vs passive
