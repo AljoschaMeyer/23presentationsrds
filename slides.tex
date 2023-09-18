@@ -463,6 +463,37 @@
                 \draw [-latex,color=brown,ultra thick] ($(v12.center)!0.15!(v31.center)$) -- ($(v12.center)!0.75!(v31.center)$);
                 \draw [-latex,color=brown,ultra thick] ($(v31.center)!0.15!(v60.center)$) -- ($(v31.center)!0.55!(v60.center)$);
             }
+
+            \only<5->{
+                \draw [-latex,color=blue,ultra thick] ($(v01.center)!0.55!(v10.center)+(0.1,0)$) -- ($(v01.center)!0.15!(v10.center)+(0.1,0)$);
+                \draw [-latex,color=blue,ultra thick] ($(v02.center)!0.75!(v01.center)+(0.1,0)$) -- ($(v02.center)!0.15!(v01.center)+(0.1,0)$);
+                \draw [-latex,color=blue,ultra thick] ($(v02.center)!0.15!(v11.center)+(-0.1,0)$) -- ($(v02.center)!0.75!(v11.center)+(-0.1,0)$);
+                \draw [-latex,color=blue,ultra thick] ($(v11.center)!0.2!(v20.center)+(-0.1,0)$) -- ($(v11.center)!0.55!(v20.center)+(-0.1,0)$);
+            }
+            \only<6->{
+                \draw [-latex,color=red,ultra thick] ($(v11.center)!0.55!(v20.center)+(0.1,0)$) -- ($(v11.center)!0.2!(v20.center)+(0.1,0)$);
+                \draw [-latex,color=red,ultra thick] ($(v11.center)!0.2!(v30.center)+(-0.1,0)$) -- ($(v11.center)!0.55!(v30.center)+(-0.1,0)$);
+            }
+            \only<7->{
+                \draw [-latex,color=red,ultra thick] ($(v11.center)!0.55!(v30.center)+(0.1,0)$) -- ($(v11.center)!0.2!(v30.center)+(0.1,0)$);
+                \draw [-latex,color=red,ultra thick] ($(v02.center)!0.75!(v11.center)+(0.1,0)$) -- ($(v02.center)!0.15!(v11.center)+(0.1,0)$);
+                \draw [-latex,color=red,ultra thick] ($(v03.center)!0.85!(v02.center)+(0.1,0)$) -- ($(v03.center)!0.15!(v02.center)+(0.1,0)$);
+
+                \draw [-latex,color=red,ultra thick] ($(v03.center)!0.15!(v12.center)+(-0.1,0)$) -- ($(v03.center)!0.85!(v12.center)+(-0.1,0)$);
+                \draw [-latex,color=red,ultra thick] ($(v12.center)!0.15!(v21.center)+(-0.1,0)$) -- ($(v12.center)!0.75!(v21.center)+(-0.1,0)$);
+                \draw [-latex,color=red,ultra thick] ($(v21.center)!0.2!(v40.center)+(-0.1,0)$) -- ($(v21.center)!0.55!(v40.center)+(-0.1,0)$);
+            }
+
+            \only<8->{
+                \draw [-latex,color=brown,ultra thick] ($(v21.center)!0.55!(v40.center)+(0.1,0)$) -- ($(v21.center)!0.2!(v40.center)+(0.1,0)$);
+                \draw [-latex,color=brown,ultra thick] ($(v21.center)!0.2!(v50.center)+(-0.1,0)$) -- ($(v21.center)!0.55!(v50.center)+(-0.1,0)$);
+
+                \draw [-latex,color=brown,ultra thick] ($(v21.center)!0.55!(v50.center)+(0.1,0)$) -- ($(v21.center)!0.2!(v50.center)+(0.1,0)$);
+                \draw [-latex,color=brown,ultra thick] ($(v12.center)!0.75!(v21.center)+(0.1,0)$) -- ($(v12.center)!0.15!(v21.center)+(0.1,0)$);
+
+                \draw [-latex,color=brown,ultra thick] ($(v12.center)!0.15!(v31.center)+(-0.1,0)$) -- ($(v12.center)!0.75!(v31.center)+(-0.1,0)$);
+                \draw [-latex,color=brown,ultra thick] ($(v31.center)!0.2!(v60.center)+(-0.1,0)$) -- ($(v31.center)!0.55!(v60.center)+(-0.1,0)$);
+            }
         \end{pgfonlayer}
     \end{tikzpicture}
 \end{frame}
