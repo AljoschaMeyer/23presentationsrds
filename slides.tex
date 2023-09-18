@@ -60,6 +60,105 @@
     $\implies$ traditional approaches don't work
 \end{frame}
 
+\begin{frame}{Reducing Computation Times}
+    \begin{itemize}
+        \item Step 1: Put a Merkle tree on it
+        \item Step 2: ???
+        \item Step 3: Profit
+    \end{itemize}
+
+    \vfill
+
+    Auvolat, Alex, and François Taïani. "Merkle search trees: Efficient state-based CRDTs in open networks." 2019 38th Symposium on Reliable Distributed Systems (SRDS). IEEE, 2019.
+\end{frame}
+
+\begin{frame}{Merkle Trees}
+    \includegraphics[keepaspectratio=true,width=11.4cm]{merkle1.pdf}
+\end{frame}
+
+\begin{frame}{Merkle Trees}
+    \includegraphics[keepaspectratio=true,width=5cm]{merkle2.pdf}\hfill\includegraphics[keepaspectratio=true,width=5cm]{merkle3.pdf}
+\end{frame}
+
+\begin{frame}{Merkle Tree Reconciliation}
+    \begin{tikzpicture}[xscale=1.6,yscale=0.95][font=\footnotesize]
+        \alt<5->{\node (v00) at (0, 0) [treenodeEqual] {\labeledvalue{$147$}{\examplea}};}{\node (v00) at (0, 0) [treenode] {\labeledvalue{$147$}{\examplea}};};
+        \alt<5->{\node (v10) at (1, 0) [treenodeUnequal] {\labeledvalue{$821$}{\exampleb}};}{\node (v10) at (1, 0) [treenode] {\labeledvalue{$821$}{\exampleb}};};
+        \alt<5->{\node (v30) at (3, 0) [treenodeEqual] {\labeledvalue{$165$}{\exampled}};}{\node (v30) at (3, 0) [treenode] {\labeledvalue{$165$}{\exampled}};};
+        \node (v40) at (4, 0) [treenode] {\labeledvalue{$508$}{\examplee}};
+        \node (v50) at (5, 0) [treenode] {\labeledvalue{$681$}{\examplef}};
+        \node (v60) at (6, 0) [treenode] {\labeledvalue{$570$}{\exampleg}};
+    
+        \alt<4->{\node (v01) at (0.5, 1) [treenodeUnequal] {$299$};}{\node (v01) at (0.5, 1) [treenode] {$299$};};
+        \alt<4->{\node (v11) at (2.5, 1) [treenodeUnequal] {$212$};}{\node (v11) at (2.5, 1) [treenode] {$212$};};
+        \node (v21) at (4.5, 1) [treenode] {$996$};
+        \node (v31) at (6.5, 1) [treenode] {$974$};
+    
+        \alt<3->{\node (v02) at (1.5, 2) [treenodeUnequal] {$772$};}{\node (v02) at (1.5, 2) [treenode] {$772$};};
+        \alt<3->{\node (v12) at (5.5, 2) [treenodeEqual] {$336$};}{\node (v12) at (5.5, 2) [treenode] {$336$};};
+    
+        \alt<2->{\node (v03) at (3.5, 3) [treenodeUnequal] {$242$};}{\node (v03) at (3.5, 3) [treenode] {$242$};};
+    
+        \draw (v00) edge[edge] (v01);
+        \draw (v10) edge[edge] (v01);
+        \draw (v30) edge[edge] (v11);
+        \draw (v40) edge[edge] (v21);
+        \draw (v50) edge[edge] (v21);
+        \draw (v60) edge[edge] (v31);
+    
+        \draw (v01) edge[edge] (v02);
+        \draw (v11) edge[edge] (v02);
+        \draw (v21) edge[edge] (v12);
+        \draw (v31) edge[edge] (v12);
+        
+        \draw (v02) edge[edge] (v03);
+        \draw (v12) edge[edge] (v03);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[xscale=1.6,yscale=0.95][font=\footnotesize]
+        \alt<5->{\node (v00) at (0, 0) [treenodeEqual] {\labeledvalue{$147$}{\examplea}};}{\node (v00) at (0, 0) [treenode] {\labeledvalue{$147$}{\examplea}};};
+        \alt<5->{\node (v20) at (2, 0) [treenodeUnequal] {\labeledvalue{$260$}{\examplec}};}{\node (v20) at (2, 0) [treenode] {\labeledvalue{$260$}{\examplec}};};
+        \alt<5->{\node (v30) at (3, 0) [treenodeEqual] {\labeledvalue{$165$}{\exampled}};}{\node (v30) at (3, 0) [treenode] {\labeledvalue{$165$}{\exampled}};};
+        \node (v40) at (4, 0) [treenode] {\labeledvalue{$508$}{\examplee}};
+        \node (v50) at (5, 0) [treenode] {\labeledvalue{$681$}{\examplef}};
+        \node (v60) at (6, 0) [treenode] {\labeledvalue{$570$}{\exampleg}};
+    
+        \alt<4->{\node (v01) at (0.5, 1) [treenodeUnequal] {$089$};}{\node (v01) at (0.5, 1) [treenode] {$089$};};
+        \alt<4->{\node (v11) at (2.5, 1) [treenodeUnequal] {$602$};}{\node (v11) at (2.5, 1) [treenode] {$602$};};
+        \node (v21) at (4.5, 1) [treenode] {$996$};
+        \node (v31) at (6.5, 1) [treenode] {$974$};
+    
+        \alt<3->{\node (v02) at (1.5, 2) [treenodeUnequal] {$446$};}{\node (v02) at (1.5, 2) [treenode] {$446$};};
+        \alt<3->{\node (v12) at (5.5, 2) [treenodeEqual] {$336$};}{\node (v12) at (5.5, 2) [treenode] {$336$};};
+    
+        \alt<2->{\node (v03) at (3.5, 3) [treenodeUnequal] {$571$};}{\node (v03) at (3.5, 3) [treenode] {$571$};};
+    
+        \draw (v00) edge[edge] (v01);
+        \draw (v20) edge[edge] (v11);
+        \draw (v30) edge[edge] (v11);
+        \draw (v40) edge[edge] (v21);
+        \draw (v50) edge[edge] (v21);
+        \draw (v60) edge[edge] (v31);
+    
+        \draw (v01) edge[edge] (v02);
+        \draw (v11) edge[edge] (v02);
+        \draw (v21) edge[edge] (v12);
+        \draw (v31) edge[edge] (v12);
+        
+        \draw (v02) edge[edge] (v03);
+        \draw (v12) edge[edge] (v03);
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Merkle Tree Reconciliation}
+    \begin{itemize}
+        \item inflexible data representation
+        \item inacceptable worst-case complexity \begin{itemize}
+            \item remember, some peers are out to get us
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Range-Based Set Reconciliation}
     $X_{\alpha} \defeq \{\exampleb, \examplec, \exampled, \examplee, \examplef, \exampleh \}$
     \hfill
@@ -74,46 +173,103 @@
 \begin{frame}{Some Nice Properties}
     \begin{itemize}
         \item reasonably efficient: $\complexity{\min(n_{\triangle} \cdot \log(n), n)}$ bytes communication, $\complexity{1}$ working memory
+        \item can interpolate toward trivial
         \item arbitrary recursion anchor protocols
         \item arbitrary partition techniques \pause
         \item but: linear computation times
     \end{itemize}
 \end{frame}
 
-% \begin{frame}{}
-%     \begin{itemize}
-%         \item two issues, start with the subtle one
-%         \item deadlock
-%         \item solution
-%         \item analysis and model
-%     \end{itemize}
-% \end{frame}
+\begin{frame}{Order-Statistic Trees}
+    \begin{tikzpicture}[xscale=0.95,yscale=1.6][font=\footnotesize]
+        \pgfdeclarelayer{background}
+        \pgfdeclarelayer{foreground}
+        \pgfsetlayers{background,main,foreground}
 
-\begin{frame}{Reducing Computation Times}
+        \begin{pgfonlayer}{main}
+            \node (v00) at (0, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplea}};
+            \node (v10) at (1, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleb}};
+            \node (v20) at (2, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplec}};
+            \node (v30) at (3, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampled}};
+            \node (v40) at (4, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplee}};
+            \node (v50) at (5, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplef}};
+            \node (v60) at (6, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleg}};
+            \node (v80) at (8, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleh}};
+            % \node (v90) at (9, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplei}};
+            \node (v100) at (10, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplei}};
+            \node (v110) at (11, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplej}};
+        
+            \node (v01) at (0.5, 1) [treenode] {$2$};
+            \node (v11) at (2.5, 1) [treenode] {$2$};
+            \node (v21) at (4.5, 1) [treenode] {$2$};
+            \node (v31) at (6, 1) [treenode] {$1$};
+            \node (v41) at (8.5, 1) [treenode] {$1$};
+            \node (v51) at (10.5, 1) [treenode] {$2$};
+        
+            \node (v02) at (1.5, 2) [treenode] {$4$};
+            \node (v12) at (5.5, 2) [treenode] {$3$};
+            \node (v22) at (9.5, 2) [treenode] {$3$};
+        
+            \node (v03) at (3.5, 3) [treenode] {$7$};
+            \node (v13) at (9.5, 3) [treenode] {$7$};
+
+            \node (v04) at (7.5, 4) [treenode] {$14$};
+        
+            \draw (v00) edge[edge] (v01);
+            \draw (v10) edge[edge] (v01);
+            \draw (v20) edge[edge] (v11);
+            \draw (v30) edge[edge] (v11);
+            \draw (v40) edge[edge] (v21);
+            \draw (v50) edge[edge] (v21);
+            \draw (v60) edge[edge] (v31);
+            \draw (v80) edge[edge] (v41);
+            \draw (v100) edge[edge] (v51);
+            \draw (v110) edge[edge] (v51);
+        
+            \draw (v01) edge[edge] (v02);
+            \draw (v11) edge[edge] (v02);
+            \draw (v21) edge[edge] (v12);
+            \draw (v31) edge[edge] (v12);
+            \draw (v41) edge[edge] (v22);
+            \draw (v51) edge[edge] (v22);
+            
+            \draw (v02) edge[edge] (v03);
+            \draw (v12) edge[edge] (v03);
+            \draw (v22) edge[edge] (v13);
+
+            \draw (v03) edge[edge] (v04);
+            \draw (v13) edge[edge] (v04);
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{foreground}
+            \only<2->{
+                \draw[draw=black, fill=black, opacity=0.6] (-0.5,-0.5) rectangle (1.5,4.5);
+                \draw[draw=black, fill=black, opacity=0.6] (9,-0.5) rectangle (11.5,4.5);
+            }
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{background}
+            \only<3->{
+                \draw[draw=violet, fill=violet, opacity=0.4] (2.1,0.75) rectangle ++(0.8,0.5);
+                \draw[draw=violet, fill=violet, opacity=0.4] (5.1,1.75) rectangle ++(0.8,0.5);
+                \draw[draw=violet, fill=violet, opacity=0.4] (8.1,0.75) rectangle ++(0.8,0.5);
+            }
+        \end{pgfonlayer}
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Monoid Trees}
     \begin{itemize}
-        \item Step 1: Put a Merkle tree on it
-        \item Step 2: ???
-        \item Step 3: Profit
+        \item set of labels: $\N$
+        \item binary associative function: $+$
+        \item neutral element: $0$\pause
+        \item lifting into the monoid: $\lambda x.1$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{}
     
 \end{frame}
-
-
-
-\begin{itemize}
-    \item not-so-subtle: linear computation times
-    \item first approach (kinda-acceptable but not really): put a Merkle tree on it
-    \item explain Merkle trees
-    \item different trees of the same data leads to different root labels -> history-independent data structure
-    \item cannot fingerprint arbitrary ranges -> let tree shape guide reconciliation
-    \item MSTs
-    \item problem 1: everyone has to use that one representation
-    \item problem 2: adversarial trees
-    \item blueskies...
-\end{itemize}
 
 \begin{itemize}
     \item let's backtrack and solve the first problem -> associativity

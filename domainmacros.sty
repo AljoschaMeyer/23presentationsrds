@@ -74,6 +74,12 @@
 \newcommand{\exampleg}[0]{\ensuremath{\mathrm{g}}}
 \newcommand{\exampleh}[0]{\ensuremath{\mathrm{h}}}
 \newcommand{\examplei}[0]{\ensuremath{\mathrm{i}}}
+\newcommand{\examplej}[0]{\ensuremath{\mathrm{j}}}
+\newcommand{\examplek}[0]{\ensuremath{\mathrm{k}}}
+\newcommand{\examplel}[0]{\ensuremath{\mathrm{l}}}
+\newcommand{\examplem}[0]{\ensuremath{\mathrm{m}}}
+\newcommand{\examplen}[0]{\ensuremath{\mathrm{n}}}
+\newcommand{\exampleo}[0]{\ensuremath{\mathrm{o}}}
 \newcommand{\exampley}[0]{\ensuremath{\mathrm{y}}}
 % \newcommand{\examplea}[0]{\ensuremath{\mathrm{ape}}}
 % \newcommand{\exampleb}[0]{\ensuremath{\mathrm{bee}}}
@@ -176,6 +182,31 @@ minimum height={height("\exampleh") + height("h"}
   align=left,
   draw=black,
   fill=white
+  }
+}
+
+\tikzset{
+  treenodeUnequal/.style={
+  align=left,
+  draw=black,
+  fill=red!20!white
+  }
+}
+
+\tikzset{
+  treenodeEqual/.style={
+  align=left,
+  draw=black,
+  fill=green!20!white
+  }
+}
+
+\tikzset{
+  treenodeSmall/.style={
+  align=left,
+  draw=black,
+  fill=white,
+  text width=0.54cm
   }
 }
 

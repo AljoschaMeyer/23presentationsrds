@@ -1,0 +1,25 @@
+\documentclass[crop,tikz]{standalone}
+
+\input{libs.tex}
+\usepackage{macros}
+\usepackage{domainmacros}
+
+\begin{document}
+\begin{tikzpicture}[xscale=2.0,yscale=1.4]%[font=\Large]
+    \node (v40) at (4, 0) [treenode] {\labeledvalue{$\h(\examplee)$}{\examplee}};
+    \node (v50) at (5, 0) [treenode] {\labeledvalue{$\h(\examplef)$}{\examplef}};
+    \node (v60) at (6, 0) [treenode] {\labeledvalue{$\h(\exampleg)$}{\exampleg}};
+
+    \node (v21) at (4.5, 1) [treenode] {$\h(\h(\examplee) \concat \h(\examplef))$};
+    \node (v31) at (6.5, 1) [treenode] {$\h(\h(\exampleg))$};
+
+    \node (v12) at (5.5, 2) [treenode] {$\h(\h(\h(\examplee) \concat \h(\examplef)) \concat \h(\h(\exampleg)))$};
+
+    \draw (v40) edge[edge] (v21);
+    \draw (v50) edge[edge] (v21);
+    \draw (v60) edge[edge] (v31);
+
+    \draw (v21) edge[edge] (v12);
+    \draw (v31) edge[edge] (v12);
+\end{tikzpicture}
+\end{document}
