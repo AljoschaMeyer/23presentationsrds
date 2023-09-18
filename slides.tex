@@ -288,6 +288,19 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Resulting Hash Functions}
+    Let $U$ be a set, $\preceq$ a linear order on $U$, $\mathcal{M} = (M, \groupaddsym, \neutraladd)$ a monoid, and $\fun{\f}{U}{M}$.
+
+    We \defined{lift $\f$ to finite sets via $\mathcal{M}$} to obtain $\partialfun{\lift{\f}{\mathcal{M}}}{\powerset{U}}{M}$ with:
+
+    \begin{align*}
+    \lift{\f}{\mathcal{M}}(\emptyset) &\defeq \neutraladd,\\
+    \lift{\f}{\mathcal{M}}(S) &\defeq \f\bigl(\min(S)\bigr) \oplus \lift{\f}{\mathcal{M}}\bigl(S \setminus \set{\min(S)}\bigr).\\
+    \end{align*}
+
+    That is: $\lift{\f}{\mathcal{M}}(S) = \groupadd{\f(s_1)}{\groupadd{\f(s_2)}{\groupadd{\cdots}{\f(s_{\abs{S}})}}}$.
+\end{frame}
+
 \begin{frame}{Advantages}
     \begin{itemize}
         \item solid worst-case communication complexity
@@ -370,30 +383,123 @@
 \end{frame}
 
 \begin{frame}{Successive Ranges}
-    
+    \begin{tikzpicture}[xscale=1.4,yscale=1.6][font=\footnotesize]
+        \pgfdeclarelayer{background}
+        \pgfdeclarelayer{foreground}
+        \pgfsetlayers{background,main,foreground}
+
+        \begin{pgfonlayer}{background}
+            \node (v00) at (0, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplea}};
+            \node (v10) at (1, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleb}};
+            \node (v20) at (2, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplec}};
+            \node (v30) at (3, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampled}};
+            \node (v40) at (4, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplee}};
+            \node (v50) at (5, 0) [treenodeSmall] {\labeledvalue{$1$}{\examplef}};
+            \node (v60) at (6, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleg}};
+            \node (v70) at (7, 0) [treenodeSmall] {\labeledvalue{$1$}{\exampleh}};
+        
+            \node (v01) at (0.5, 1) [treenode] {$2$};
+            \node (v11) at (2.5, 1) [treenode] {$2$};
+            \node (v21) at (4.5, 1) [treenode] {$2$};
+            \node (v31) at (6.5, 1) [treenode] {$2$};
+        
+            \node (v02) at (1.5, 2) [treenode] {$4$};
+            \node (v12) at (5.5, 2) [treenode] {$4$};
+        
+            \node (v03) at (3.5, 3) [treenode] {$8$};
+        
+            \draw (v00) edge[edge] (v01);
+            \draw (v10) edge[edge] (v01);
+            \draw (v20) edge[edge] (v11);
+            \draw (v30) edge[edge] (v11);
+            \draw (v40) edge[edge] (v21);
+            \draw (v50) edge[edge] (v21);
+            \draw (v60) edge[edge] (v31);
+            \draw (v70) edge[edge] (v31);
+        
+            \draw (v01) edge[edge] (v02);
+            \draw (v11) edge[edge] (v02);
+            \draw (v21) edge[edge] (v12);
+            \draw (v31) edge[edge] (v12);
+            
+            \draw (v02) edge[edge] (v03);
+            \draw (v12) edge[edge] (v03);
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{main}
+            \draw[draw=black, fill=black, opacity=0.6] (-0.5,-0.5) rectangle ++(1,4);
+            \draw[draw=blue, fill=blue, opacity=0.1] (0.5,-0.5) rectangle ++(2,4);
+            \draw[draw=red, fill=red, opacity=0.1] (2.5,-0.5) rectangle ++(2,4);
+            \draw[draw=yellow, fill=yellow, opacity=0.1] (4.5,-0.5) rectangle ++(2,4);
+            \draw[draw=black, fill=black, opacity=0.6] (6.5,-0.5) rectangle ++(1,4);
+        \end{pgfonlayer}
+
+        \begin{pgfonlayer}{foreground}
+            \only<2-4>{
+                \draw [-latex,color=blue,ultra thick] ($(v03.center)!0.15!(v02.center)$) -- ($(v03.center)!0.85!(v02.center)$);
+                \draw [-latex,color=blue,ultra thick] ($(v02.center)!0.15!(v01.center)$) -- ($(v02.center)!0.75!(v01.center)$);
+                \draw [-latex,color=blue,ultra thick] ($(v01.center)!0.15!(v10.center)$) -- ($(v01.center)!0.55!(v10.center)$);
+            }
+            \only<3-4>{
+                \draw [-latex,color=blue,ultra thick] ($(v03.center)!0.15!(v02.center)+(-0.15,0.15)$) -- ($(v03.center)!0.85!(v02.center)+(-0.15,0.15)$);
+                \draw [-latex,color=blue,ultra thick] ($(v02.center)!0.15!(v11.center)$) -- ($(v02.center)!0.75!(v11.center)$);
+                \draw [-latex,color=blue,ultra thick] ($(v11.center)!0.15!(v20.center)$) -- ($(v11.center)!0.55!(v20.center)$);
+            }
+            \only<3-4>{
+                \draw [-latex,color=red,ultra thick] ($(v03.center)!0.15!(v02.center)+(0.15,-0.15)$) -- ($(v03.center)!0.85!(v02.center)+(0.15,-0.15)$);
+                \draw [-latex,color=red,ultra thick] ($(v02.center)!0.15!(v11.center)+(0.15,0.15)$) -- ($(v02.center)!0.75!(v11.center)+(0.15,0.15)$);
+                \draw [-latex,color=red,ultra thick] ($(v11.center)!0.15!(v30.center)$) -- ($(v11.center)!0.55!(v30.center)$);
+            }
+            \only<4>{
+                \draw [-latex,color=red,ultra thick] ($(v03.center)!0.15!(v12.center)+(-0.15,-0.15)$) -- ($(v03.center)!0.85!(v12.center)+(-0.15,-0.15)$);
+                \draw [-latex,color=red,ultra thick] ($(v12.center)!0.15!(v21.center)+(-0.15,0.15)$) -- ($(v12.center)!0.75!(v21.center)+(-0.15,0.15)$);
+                \draw [-latex,color=red,ultra thick] ($(v21.center)!0.15!(v40.center)$) -- ($(v21.center)!0.55!(v40.center)$);
+
+                \draw [-latex,color=brown,ultra thick] ($(v03.center)!0.15!(v12.center)$) -- ($(v03.center)!0.85!(v12.center)$);
+                \draw [-latex,color=brown,ultra thick] ($(v12.center)!0.15!(v21.center)$) -- ($(v12.center)!0.75!(v21.center)$);
+                \draw [-latex,color=brown,ultra thick] ($(v21.center)!0.15!(v50.center)$) -- ($(v21.center)!0.55!(v50.center)$);
+
+                \draw [-latex,color=brown,ultra thick] ($(v03.center)!0.15!(v12.center)+(0.15,0.15)$) -- ($(v03.center)!0.85!(v12.center)+(0.15,0.15)$);
+                \draw [-latex,color=brown,ultra thick] ($(v12.center)!0.15!(v31.center)$) -- ($(v12.center)!0.75!(v31.center)$);
+                \draw [-latex,color=brown,ultra thick] ($(v31.center)!0.15!(v60.center)$) -- ($(v31.center)!0.55!(v60.center)$);
+            }
+        \end{pgfonlayer}
+    \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{Some Peers Are Out To Get Us}
+    \begin{itemize}
+        \item adversary must sabotage reconciliation
+        \item<2-> active and passive adversaries
+        \item<3-> randomized boundaries defeat individual collisions 
+        \item<4-> better protection: secure hash functions
+    \end{itemize}
+\end{frame}
 
-\begin{itemize}
-    \item malicious adversaries: active vs passive
-    \item even passive finds collisions in relatively small sets
-    \item but: collision must actually affect a session -> brittle, and randomization ftw
-    \item But what if there are many collisions? -> collision-resistant hash functions
-\end{itemize}
+\begin{frame}{Secure Hash Functions}
+    Let $U$ be a set, $\mathcal{M} = (M, \groupaddsym, \neutraladd)$ a monoid, and $\fun{\f}{\powerset{U}}{M}$.
 
-\begin{itemize}
-    \item must always lift into the monoid with a secure hash function. Interesting part is the selection of the monoid
-    \item bellare: xor, addition, multiplication, vectorized addition (lattices)
-    \item multiset homomorphic hashing adds rsa and elliptic curves
-    \item we are weaker: homomorphism-flavored characterization
-    \item in particular, no need for commutativity (because we use search trees) -> matrix multiplication -> cayley hashes
-    \item Don't know anything else, but cayley still has unnecesary structure, as we do not need inverses
-\end{itemize}
+    $\f$ is \defined{set-homomorphic} if $\f(U_1 \cup U_2) = \f(U_1) \groupaddsym \f(U_2)$.\pause
 
-\begin{itemize}
-    \item conclusion: first non-trivial reconciliation algorithm to work in resource-constrained settings and adversarial environments
-    \item also: comparatively simple -> had multiple open source developers reach out to me
-\end{itemize}
-% \end{frame}
+    XOR, addition, multiplication, lattices, RSA, eliptic curves.\pause
+
+    \vfill
+
+    Let further $\preceq$ a linear order on $U$.
+	
+	$\f$ is a \defined{\somewhatmorphism{}} if for $S_0, S_1 \in \powerset{U}$ with $\max(S_0) \prec \min(S_1)$, we have $\f(S_0 \cup S_1) = \groupadd{\f(S_0)}{\f(S_1)}$.
+
+    \vfill
+
+    No commutativity: Cayley hash functions
+\end{frame}
+
+\begin{frame}{Conclusion}
+    Unlike conventional reconciliation techniques:
+    \begin{itemize}
+        \item robust
+        \item simple
+    \end{itemize}
+\end{frame}
 
 \end{document}
