@@ -180,7 +180,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Order-Statistic Trees}
+\begin{frame}{Order-Statistic Trees\only<2->{ $[\examplec, \examplei)$}}
     \begin{tikzpicture}[xscale=0.95,yscale=1.6][font=\footnotesize]
         \pgfdeclarelayer{background}
         \pgfdeclarelayer{foreground}
@@ -203,7 +203,7 @@
             \node (v11) at (2.5, 1) [treenode] {$2$};
             \node (v21) at (4.5, 1) [treenode] {$2$};
             \node (v31) at (6, 1) [treenode] {$1$};
-            \node (v41) at (8.5, 1) [treenode] {$1$};
+            \node (v41) at (8, 1) [treenode] {$1$};
             \node (v51) at (10.5, 1) [treenode] {$2$};
         
             \node (v02) at (1.5, 2) [treenode] {$4$};
@@ -244,16 +244,30 @@
         \begin{pgfonlayer}{foreground}
             \only<2->{
                 \draw[draw=black, fill=black, opacity=0.6] (-0.5,-0.5) rectangle (1.5,4.5);
-                \draw[draw=black, fill=black, opacity=0.6] (9,-0.5) rectangle (11.5,4.5);
+                \draw[draw=black, fill=black, opacity=0.6] (9.5,-0.5) rectangle (11.5,4.5);
             }
         \end{pgfonlayer}
 
         \begin{pgfonlayer}{background}
-            \only<3->{
-                \draw[draw=violet, fill=violet, opacity=0.4] (2.1,0.75) rectangle ++(0.8,0.5);
-                \draw[draw=violet, fill=violet, opacity=0.4] (5.1,1.75) rectangle ++(0.8,0.5);
-                \draw[draw=violet, fill=violet, opacity=0.4] (8.1,0.75) rectangle ++(0.8,0.5);
-            }
+            \begin{scope}[transparency group, opacity=0.4]
+                \only<4->{
+                    \draw[draw=orange, fill=orange] (7.1,3.75) rectangle ++(0.8,0.5);
+                }
+
+                \only<5->{
+                    \draw[orange,line width=11pt,rounded corners=0.1em,line cap=round] (v04.center) -- (v03.center) -- (v02.center) -- (v11.center);
+                    \draw[orange,line width=11pt,rounded corners=1em,line cap=round] (v04.center) -- (v03.center) -- (v02.center) -- (v11.center);
+
+                    \draw[orange,line width=11pt,rounded corners=0.1em,line cap=round] (v04.center) -- (v13.center) -- (v22.center) -- (v41.center);
+                    \draw[orange,line width=11pt,rounded corners=1em,line cap=round] (v04.center) -- (v13.center) -- (v22.center) -- (v41.center);
+                }                
+
+                \only<3->{
+                    \draw[draw=violet, fill=violet] (2.1,0.75) rectangle ++(0.8,0.5);
+                    \draw[draw=violet, fill=violet] (5.1,1.75) rectangle ++(0.8,0.5);
+                    \draw[draw=violet, fill=violet] (7.6,0.75) rectangle ++(0.8,0.5);
+                }
+            \end{scope}
         \end{pgfonlayer}
     \end{tikzpicture}
 \end{frame}
